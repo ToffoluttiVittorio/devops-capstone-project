@@ -135,14 +135,17 @@ def create_accounts():
         account = Account.find(account_id)
         if account:
             account.delete()
-        return ("", status.HTTP_204_NO_CONTENT)
+        return "", status.HTTP_204_NO_CONTENT
 
 
 ######################################################################
 # DELETE AN ACCOUNT
 ######################################################################
 
-# ... place you code here to DELETE an account ...
+    def test_method_not_allowed(self):
+        """It should not allow an illegal method call"""
+        resp = self.client.delete(BASE_URL)
+        self.assertEqual(resp.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
 
 ######################################################################
